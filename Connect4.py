@@ -122,6 +122,8 @@ while not game_over:
 					if winning_move(board, 1):
 						label = myfont.render("Player 1 wins!!", 1, WHITE)
 						screen.blit(label, (40,10))
+						pygame.display.update()
+						pygame.time.delay(3000)
 						game_over = True
 
 
@@ -137,6 +139,8 @@ while not game_over:
 					if winning_move(board, 2):
 						label = myfont.render("Player 2 wins!!", 1, WHITE)
 						screen.blit(label, (40,10))
+						pygame.display.update()
+						pygame.time.delay(3000)
 						game_over = True
 
 			print_board(board)

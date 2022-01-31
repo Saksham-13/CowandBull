@@ -64,10 +64,10 @@ def cowbull(choice,ans,chn):
         l.append(b)
         print("Cows ",b[0],"    Bulls   ",b[1] , "\n", "Chances left", chn)
         
-        return  
+       
         
-        if(b[1]==4):
-            print("Correct guess" )
+       # if(b[2]==0):
+       #     l.append("")
     else : 
         print("answer is ",ans)
         
