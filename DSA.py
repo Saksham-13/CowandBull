@@ -1,5 +1,5 @@
 import pygame as pg
-from Connect4 import Connect4
+#from Connect4 import Connect4
 pg.init()
 FONTS = pg.font.SysFont('comicsans',20)
 import random
