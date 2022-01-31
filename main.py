@@ -34,7 +34,7 @@ answer = random.randint(1000,9999)
 while(not repCheck(answer)):
     answer = random.randint(1000,9999)
 
-chance = 6
+
 while(chance >0):
 
     cho = int(input("Enter your choice          "))

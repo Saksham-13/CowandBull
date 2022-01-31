@@ -1,4 +1,5 @@
 import os
+from numpy import number
 import pygame
 # setup display
 WIDTH,HEIGHT= 800,500
@@ -9,6 +10,7 @@ icon = pygame.image.load("cow.png")
 pygame.display.set_icon(icon)
 # Load images
 grass = pygame.image.load("graassland.png")
+numbers = pygame.image.load("numbers1.png")
 pygame.transform.smoothscale(grass,(WIDTH,HEIGHT))
 # Setup GameLoop
 clock = pygame.time.Clock()
@@ -17,6 +19,7 @@ FPS=60
 while run:
     clock.tick(FPS)
     WIN.blit(grass,(0,0))
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
