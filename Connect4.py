@@ -120,10 +120,11 @@ while not game_over:
 					drop_piece(board, row, col, 1)
 
 					if winning_move(board, 1):
+						draw_board(board)
 						label = myfont.render("Player 1 wins!!", 1, WHITE)
 						screen.blit(label, (40,10))
 						pygame.display.update()
-						pygame.time.delay(3000)
+						pygame.time.delay(1000)
 						game_over = True
 
 
@@ -137,10 +138,11 @@ while not game_over:
 					drop_piece(board, row, col, 2)
 
 					if winning_move(board, 2):
+						draw_board(board)
 						label = myfont.render("Player 2 wins!!", 1, WHITE)
 						screen.blit(label, (40,10))
 						pygame.display.update()
-						pygame.time.delay(3000)
+						pygame.time.delay(1000)
 						game_over = True
 
 			print_board(board)

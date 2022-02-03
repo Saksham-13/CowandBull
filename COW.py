@@ -1,4 +1,5 @@
 from operator import indexOf, pos
+from turtle import done
 import pygame as pg
 #from Connect4 import Connect4
 
@@ -55,7 +56,7 @@ def cowbull(choice,ans,chn):
     if chn >= 0 :
         if(not digitcheck(choice)):
             print("Enter a four digit number only")
-            l.append("Invalid Choice; no repetetion of digits allowed")
+            l.append("Invalid Choice; only four digit number allowed")
             return
         if(not repCheck(choice)):
             print("Invalid Choice; no repetetion of digits allowed")
@@ -78,8 +79,11 @@ def cowbull(choice,ans,chn):
         
         if chn == 0:
             l.append("            FINAL ANSWER IS "+ str(ans1))
+            return False
         elif bull == 4:
             l.append(str(ans1)+"IS CORRECT ANSWER")
+            return False
+            
         
         print("Cows ",b[0],"    Bulls   ",b[1] , "\n", "Chances left", chn)
         
@@ -162,7 +166,9 @@ def main():
     while not done:
         for event in pg.event.get():
             if event.type == pg.QUIT:
+
                 done = True
+            
             if event.type == pg.MOUSEBUTTONDOWN:
                 pos = pg.mouse.get_pos()
                 print(pos)
@@ -178,6 +184,14 @@ def main():
         if chance < 7:
             
             drawcow(chance)
+            if ( type(l[-1]) == str and not l[-1].startswith("Invalid")):
+                pg.time.delay(1000)
+                done = True 
+
+
+            
+            
+
 
         pg.display.flip()
         clock.tick(30)
@@ -185,4 +199,3 @@ def main():
 
 
 main()
-pg.quit()
