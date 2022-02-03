@@ -1,5 +1,7 @@
+from operator import indexOf, pos
 import pygame as pg
 #from Connect4 import Connect4
+
 pg.init()
 FONTS = pg.font.SysFont('comicsans',20)
 import random
@@ -9,7 +11,7 @@ screen = pg.display.set_mode((640, 480))
 COLOR_INACTIVE = pg.Color('lightskyblue3')
 COLOR_ACTIVE = pg.Color('dodgerblue2')
 FONT = pg.font.Font(None, 32)
-chance = 2
+chance = 7
 l = []
 
 def repCheck(n):
@@ -31,22 +33,34 @@ def digitcheck(n):
         return False
 def drawcow(n):
     global l
+    n=1
     for i in l:
-        c = i[0] 
-        b = i[1]
-        chn = i[2]
-        
-        str1= "Cows    "+str(c)+"    Bulls   "+str(b) + "    Chances left    "+ str(chn)
+        if type(i) != str:
+            c = i[0] 
+            b = i[1]
+            chn = i[2]
+            choice = i[3]
+            
+            str1= str(choice)+"   Cows    "+str(c)+"    Bulls   "+str(b) + "    Chances left    "+ str(chn)
+            
+        else :
+            str1 = str(i)
         text1 = FONTS.render(str1,1, BLACK)
-        screen.blit(text1,(260,100*(2-i[2])))
+        screen.blit(text1,(111,100+(n*30)))
+        n=n+1
 
 def cowbull(choice,ans,chn):
+    ans1 = str(ans)
+    choice1 = choice
     if chn >= 0 :
         if(not digitcheck(choice)):
             print("Enter a four digit number only")
-            
+            l.append("Invalid Choice; no repetetion of digits allowed")
+            return
         if(not repCheck(choice)):
-            print("invalid Choice; no repetetion of digits allowed")
+            print("Invalid Choice; no repetetion of digits allowed")
+            l.append("Invalid Choice; no repetetion of digits allowed")
+            return
             
         cow=0
         bull = 0
@@ -59,9 +73,14 @@ def cowbull(choice,ans,chn):
         for i in choice:
             cow += ans.count(i)
         
-        b = (cow,bull,chn)
-        
+        b = (cow,bull,chn,choice1)
         l.append(b)
+        
+        if chn == 0:
+            l.append("            FINAL ANSWER IS "+ str(ans1))
+        elif bull == 4:
+            l.append(str(ans1)+"IS CORRECT ANSWER")
+        
         print("Cows ",b[0],"    Bulls   ",b[1] , "\n", "Chances left", chn)
         
        
@@ -135,7 +154,7 @@ class InputBox:
 
 def main():
     clock = pg.time.Clock()
-    input_box1 = InputBox(50, 100, 140, 32)
+    input_box1 = InputBox(220, 50, 140, 32)
     
     input_boxes = [input_box1]
     done = False
@@ -144,6 +163,9 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 done = True
+            if event.type == pg.MOUSEBUTTONDOWN:
+                pos = pg.mouse.get_pos()
+                print(pos)
             for box in input_boxes:
                 box.handle_event(event)
 
@@ -153,7 +175,7 @@ def main():
         screen.fill((112, 214, 255))#112, 214, 255
         for box in input_boxes:
             box.draw(screen)
-        if chance < 2:
+        if chance < 7:
             
             drawcow(chance)
 
