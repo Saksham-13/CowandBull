@@ -184,8 +184,10 @@ def main():
         if chance < 7:
             
             drawcow(chance)
+            pg.display.flip()
             if ( type(l[-1]) == str and not l[-1].startswith("Invalid")):
-                pg.time.delay(1000)
+                
+                pg.time.delay(2000)
                 done = True 
 
 
