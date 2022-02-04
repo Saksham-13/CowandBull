@@ -96,7 +96,7 @@ while not game_over:
 
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
-			sys.exit()
+			game_over = True
 
 		if event.type == pygame.MOUSEMOTION:
 			pygame.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))

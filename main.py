@@ -24,9 +24,10 @@ clock = pygame.time.Clock()
 run = True
 FPS=60
 #create button object
-mybutton1 = button.Button(grass,(WIDTH/2),((HEIGHT-200)/3),100,40,CORAL,TOMATO,"CONNECT 4",WHITE,  FONTS)
-mybutton2 = button.Button(grass,(WIDTH/2),((HEIGHT-200)/3*2),100,40,CORAL,TOMATO,"COWS AND BULLS",WHITE,  FONTS)
-mybutton3 = button.Button(grass,(WIDTH/2),((HEIGHT-200)),100,40,CORAL,TOMATO,"HANGMAN",WHITE,  FONTS)
+mybutton1 = button.Button(grass,(WIDTH/2),((HEIGHT-200)/4),200,40,CORAL,TOMATO,"CONNECT 4",WHITE,  FONTS)
+mybutton2 = button.Button(grass,(WIDTH/2),((HEIGHT-200)/4*2),200,40,CORAL,TOMATO,"COWS AND BULLS",WHITE,  FONTS)
+mybutton3 = button.Button(grass,(WIDTH/2),((HEIGHT-200)/4*3),200,40,CORAL,TOMATO,"HANGMAN",WHITE,  FONTS)
+mybutton4 = button.Button(grass,(WIDTH/2),((HEIGHT-200)),200,40,CORAL,TOMATO,"FLOOD IT",WHITE,  FONTS)
 while run:
     clock.tick(FPS)
     WIN.blit(grass,(0,0))
@@ -34,7 +35,7 @@ while run:
     mybutton1.draw(x,y)
     mybutton2.draw(x,y)
     mybutton3.draw(x,y)
-
+    mybutton4.draw(x,y)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
@@ -49,6 +50,16 @@ while run:
 
             if mybutton2.action(click_x,click_y):
                 import COW
+                WIN=pygame.display.set_mode((WIDTH,HEIGHT),pygame.RESIZABLE)
+                pygame.display.set_caption("ARCADE GAMES")
+                pygame.display.set_icon(icon)
+            if mybutton3.action(click_x,click_y):
+                from Hangman import hangman
+                WIN=pygame.display.set_mode((WIDTH,HEIGHT),pygame.RESIZABLE)
+                pygame.display.set_caption("ARCADE GAMES")
+                pygame.display.set_icon(icon)
+            if mybutton4.action(click_x,click_y):
+                from FloodIT  import Flood_It
                 WIN=pygame.display.set_mode((WIDTH,HEIGHT),pygame.RESIZABLE)
                 pygame.display.set_caption("ARCADE GAMES")
                 pygame.display.set_icon(icon)

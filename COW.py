@@ -57,12 +57,27 @@ def cowbull(choice,ans,chn):
         if(not digitcheck(choice)):
             print("Enter a four digit number only")
             l.append("Invalid Choice; only four digit number allowed")
+            if chn == 0:
+                l.append("            FINAL ANSWER IS "+ str(ans1))
+                return False
+
+
             return
         if(not repCheck(choice)):
             print("Invalid Choice; no repetetion of digits allowed")
             l.append("Invalid Choice; no repetetion of digits allowed")
+            if chn == 0:
+                l.append("            FINAL ANSWER IS "+ str(ans1))
+                return False
             return
-            
+        if(not choice.isdecimal()):
+            print("Invalid Choice; only digits allowed")
+            l.append("Invalid Choice; only digits allowed")
+            if chn == 0:
+                l.append("            FINAL ANSWER IS "+ str(ans1))
+                return False
+            return
+        choice = int(choice)    
         cow=0
         bull = 0
         ans = list(str(ans))
@@ -126,7 +141,7 @@ class InputBox:
             if self.active:
                 if event.key == pg.K_RETURN:
                     print(self.text)
-                    cho = int(self.text)
+                    cho = self.text
                     global chance
                     chance = chance-1
                     b = cowbull(cho,answer,chance)
